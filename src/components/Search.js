@@ -14,17 +14,33 @@ const Search = () => {
   useEffect(() => {
     if (term === "") return; //don't do empty search
 
-    (async () => {
+    const search = async () => {
       const { data } = await wikipedia(term);
       setResults(data.query.search);
-    })(); //could also be written as: const search = async () { //method }; search();
+    }; //could also be written as: (async () { //method })() without method name assignment
+
+    //delay search to throttle number of API requests while typing
+    const timeoutId = setTimeout(() => {
+      console.log("Doing a search for", term);
+      search();
+    }, 500);
+
+    return () => {
+      console.log("Canceling timeout", timeoutId);
+      clearTimeout(timeoutId);
+    };
   }, [term]);
 
   const renderedResults = results.map((result) => {
     return (
       <div className="item" key={result.pageid}>
         <div className="right floated content">
-            <a href={`https://en.wikipedia.org?curid=${result.pageid}`} className="ui button">Go</a>
+          <a
+            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+            className="ui button"
+          >
+            Go
+          </a>
         </div>
         <div className="content">
           <div className="header">{result.title}</div>
