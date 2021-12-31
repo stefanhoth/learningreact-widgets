@@ -1,0 +1,45 @@
+import { useState } from "react";
+
+const Dropdown = ({ options, selected, onSelectedChange }) => {
+  const [open, setOpen] = useState(false);
+
+  const renderedOptions = options
+    .filter((option) => option !== selected)
+    .map((option) => {
+      return (
+        <div
+          key={option.value}
+          className="item"
+          onClick={(e) => {
+            onSelectedChange(option);
+          }}
+        >
+          {option.label}
+        </div>
+      );
+    });
+
+  return (
+    <div className="ui form">
+      <form onSubmit={(e) => e.preventDefault()}>
+        <div className="field">
+          <label className="label">Select a color</label>
+        </div>
+        <div
+          className={`ui selection dropdown active ${
+            open ? "active visible" : ""
+          }`}
+          onClick={() => setOpen(!open)}
+        >
+          <i className="dropdown icon"></i>
+          <div className="text">{selected.label}</div>
+          <div className={`menu  ${open ? "transition visible" : ""}`}>
+            {renderedOptions}
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Dropdown;
