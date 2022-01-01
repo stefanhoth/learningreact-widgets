@@ -1,7 +1,26 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref && ref.current.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    };
+
+    document.body.addEventListener("click", onBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick, {
+        capture: true,
+      });
+    };
+  }, []);
+
+  const ref = useRef();
 
   const renderedOptions = options
     .filter((option) => option !== selected)
@@ -20,7 +39,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
     });
 
   return (
-    <div className="ui form">
+    <div ref={ref} className="ui form">
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="field">
           <label className="label">Select a color</label>
