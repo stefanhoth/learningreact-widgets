@@ -40,7 +40,13 @@ const App = () => {
   return (
     <div>
       <h1>Widgets App</h1>
-      <Dropdown label='Please select a color' selected={selection} onSelectedChange={setSelection} options={dropdownOptions} />
+      <Dropdown
+        label="Please select a color"
+        selected={selection}
+        onSelectedChange={setSelection}
+        options={dropdownOptions}
+      />
+      <h2 style={{ color: selection.value }}>This text is {selection.label}</h2>
     </div>
   );
 };
