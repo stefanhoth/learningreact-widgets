@@ -40,7 +40,7 @@ const App = () => {
   return (
     <div>
       <h1>Widgets App</h1>
-      <Dropdown selected={selection} onSelectedChange={setSelection} options={dropdownOptions} />
+      <Dropdown label='Please select a color' selected={selection} onSelectedChange={setSelection} options={dropdownOptions} />
     </div>
   );
 };
