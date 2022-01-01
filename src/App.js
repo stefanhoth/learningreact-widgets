@@ -2,6 +2,7 @@ import { useState } from "react";
 import Accordion from "./components/Accordion";
 import Dropdown from "./components/Dropdown";
 import Search from "./components/Search";
+import Translate from "./components/Translate";
 
 const items = [
   {
@@ -34,7 +35,6 @@ const dropdownOptions = [
 ];
 
 const App = () => {
-
   const [selection, setSelection] = useState(dropdownOptions[0]);
 
   return (
@@ -47,6 +47,9 @@ const App = () => {
         options={dropdownOptions}
       />
       <h2 style={{ color: selection.value }}>This text is {selection.label}</h2>
+
+      <hr />
+      <Translate />
     </div>
   );
 };
