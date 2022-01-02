@@ -10,7 +10,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className="ui tabular menu">
+    <div className="ui secondary pointing menu">
       {renderLink("/", "Accordion")}
       {renderLink("/search", "Search")}
       {renderLink("/dropdown", "Dropdown")}
