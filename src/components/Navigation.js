@@ -1,21 +1,22 @@
-const Navigation = () => {
-        
+const Navigation = ({ pathname }) => {
+  const renderLink = (href, label) => {
+    const isActive = href === pathname;
+
     return (
-      <div className="ui tabular menu">
-        <a href="/" className="item">
-          Accordion
-        </a>
-        <a href="/search" className="item">
-          Search
-        </a>
-        <a href="/dropdown" className="item">
-          Dropdown
-        </a>
-        <a href="/translate" className="item">
-          Translate
-        </a>
-      </div>
+      <a href={href} className={`item ${isActive ? "active" : ""}`}>
+        {label}
+      </a>
     );
+  };
+
+  return (
+    <div className="ui tabular menu">
+      {renderLink("/", "Accordion")}
+      {renderLink("/search", "Search")}
+      {renderLink("/dropdown", "Dropdown")}
+      {renderLink("/translate", "Translate")}
+    </div>
+  );
 };
 
 export default Navigation;

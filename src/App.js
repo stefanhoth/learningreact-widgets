@@ -74,11 +74,10 @@ const App = () => {
     }
   };
 
-  console.log(window.location.pathname);
   return (
     <div>
       <h1>Widgets App</h1>
-      <Navigation />
+      <Navigation pathname={window.location.pathname} />
 
       {showAccordion()}
       {showSearch()}
