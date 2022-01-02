@@ -2,6 +2,7 @@ import { useState } from "react";
 import Accordion from "./components/Accordion";
 import Dropdown from "./components/Dropdown";
 import Navigation from "./components/Navigation";
+import Route from "./components/Route";
 import Search from "./components/Search";
 import Translate from "./components/Translate";
 
@@ -38,20 +39,13 @@ const dropdownOptions = [
 const App = () => {
   const [selection, setSelection] = useState(dropdownOptions[0]);
 
-  const showAccordion = () => {
-    if (window.location.pathname === "/") {
+  const renderAccordion = () => {
+
       return <Accordion items={items} />;
-    }
   };
 
-  const showSearch = () => {
-    if (window.location.pathname === "/search") {
-      return <Search />;
-    }
-  };
+  const renderDropdown = () => {
 
-  const showDropdown = () => {
-    if (window.location.pathname === "/dropdown") {
       return (
         <div className="dropdown">
           <Dropdown
@@ -65,24 +59,17 @@ const App = () => {
           </h2>
         </div>
       );
-    }
-  };
-
-  const showTranslate = () => {
-    if (window.location.pathname === "/translate") {
-      return <Translate />;
-    }
-  };
+    };
 
   return (
     <div>
       <h1>Widgets App</h1>
       <Navigation pathname={window.location.pathname} />
 
-      {showAccordion()}
-      {showSearch()}
-      {showDropdown()}
-      {showTranslate()}
+      <Route route='/' component={ renderAccordion() } />
+      <Route route='/search' component={ <Search /> }/>
+      <Route route='/dropdown' component={ renderDropdown() } />
+      <Route route='/translate' component={ <Translate /> }/>
     </div>
   );
 };
