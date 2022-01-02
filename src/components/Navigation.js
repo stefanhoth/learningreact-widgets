@@ -1,6 +1,6 @@
-const Navigation = ({ pathname }) => {
+const Navigation = () => {
   const renderLink = (href, label) => {
-    const isActive = href === pathname;
+    const isActive = href === window.location.pathname;
 
     return (
       <a href={href} className={`item ${isActive ? "active" : ""}`}>

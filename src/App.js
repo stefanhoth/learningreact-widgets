@@ -39,11 +39,10 @@ const dropdownOptions = [
 const App = () => {
   const [selection, setSelection] = useState(dropdownOptions[0]);
 
-
   return (
     <div>
       <h1>Widgets App</h1>
-      <Navigation pathname={window.location.pathname} />
+      <Navigation />
 
       <Route path="/">
         <Accordion items={items} />
@@ -55,14 +54,14 @@ const App = () => {
 
       <Route path="/dropdown">
         <Dropdown
-            label="Please select a color"
-            selected={selection}
-            onSelectedChange={setSelection}
-            options={dropdownOptions}
-          />
-          <h2 style={{ color: selection.value }}>
-            This text is {selection.label}
-          </h2>
+          label="Please select a color"
+          selected={selection}
+          onSelectedChange={setSelection}
+          options={dropdownOptions}
+        />
+        <h2 style={{ color: selection.value }}>
+          This text is {selection.label}
+        </h2>
       </Route>
 
       <Route path="/translate">
