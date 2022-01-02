@@ -39,16 +39,22 @@ const dropdownOptions = [
 const App = () => {
   const [selection, setSelection] = useState(dropdownOptions[0]);
 
-  const renderAccordion = () => {
 
-      return <Accordion items={items} />;
-  };
+  return (
+    <div>
+      <h1>Widgets App</h1>
+      <Navigation pathname={window.location.pathname} />
 
-  const renderDropdown = () => {
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
 
-      return (
-        <div className="dropdown">
-          <Dropdown
+      <Route path="/search">
+        <Search />
+      </Route>
+
+      <Route path="/dropdown">
+        <Dropdown
             label="Please select a color"
             selected={selection}
             onSelectedChange={setSelection}
@@ -57,19 +63,11 @@ const App = () => {
           <h2 style={{ color: selection.value }}>
             This text is {selection.label}
           </h2>
-        </div>
-      );
-    };
+      </Route>
 
-  return (
-    <div>
-      <h1>Widgets App</h1>
-      <Navigation pathname={window.location.pathname} />
-
-      <Route route='/' component={ renderAccordion() } />
-      <Route route='/search' component={ <Search /> }/>
-      <Route route='/dropdown' component={ renderDropdown() } />
-      <Route route='/translate' component={ <Translate /> }/>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 };

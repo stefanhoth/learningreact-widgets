@@ -1,10 +1,5 @@
-const Route = ({route, component}) => {
-    
-    if(window.location.pathname === route){
-        return component;
-    }
-    
-    return null;
+const Route = ({ path, children }) => {
+  return window.location.pathname === path ? children : null;
 };
 
 export default Route;
